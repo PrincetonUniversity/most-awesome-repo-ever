@@ -53,7 +53,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="{%url 'index' %}"><span class="glyphicon glyphicon-home"></span></a>
+                
+              <a class="navbar-brand" href="{%url 'index' %}" style="margin-top:-10px;">
+                 <img src="{{STATIC_URL}}img/simpleLogo.svg" height=40px>
+            </a>
+                    
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -80,7 +84,6 @@
                         <li><a href="/recruitment/create_account"> Mailing List and Meals </a></li>
                      </ul>
                     </li>
-
 					<li class="dropdown">
 					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> People <span class="caret"></span></a>
 					  <ul class="dropdown-menu">
@@ -133,6 +136,7 @@
 
 
               <ul class="nav navbar-right navbar-nav">
+                  
                 {% if not netid %}
                 <li><a href="{%url 'login' %}?next_page={%url 'profile' %}">Login</a></li>
                 {% else %}
@@ -164,44 +168,22 @@
         </nav>
 
 
-
         <!-- Begin Body -->
-        <div class="container">
-
-          <div id="outer-background-container" data-default-background-img="{{STATIC_URL}}img/oldcharter.jpg" style="background-image:url({{STATIC_URL}}img/oldcharter.jpg); background-attachment: fixed;"></div>
-
-
-          <div class="background-image-overlay"></div>
-
-          <div class="no-gutter row">
-            <div class="col-md-12" id="content">
-              <div class="panel panel-transparent">
-                <div class="panel-body">
+<div class="container">
 
                  {% block content %}{% endblock %}
 
-               </div>
-             </div>
-           </div> 
-         </div>
-
-       </div>
-
-       <!-- credit where credit is due -->
-       <footer>
-        <div class="container">
-         <div class="row">
-          <div class="col-md-6 text-left credits" >
-            <h5> Built by R. Fitzpatrick '16, J. Whitton '16, Q. Zhou '15</h5>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="col-md-6 text-left text-muted">Created by members of the Princeton Charter Club</div>
+          <div class="col-md-6 text-right text-muted">
+              © Princeton Charter Club 2016
           </div>
-          <div class="col-md-6 text-right credits" >
-            <h5>© Princeton Charter Club 2015</h5> 
-          </div>
-        </div>
       </div>
     </footer>
-
-
+    
+    
     <!-- script references -->
     {% block javascript %}
     <script src="{% static "js/jquery-2.1.3.min.js" %}"></script>
