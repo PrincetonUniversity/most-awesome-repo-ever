@@ -181,7 +181,8 @@ body {
   font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
   font-weight:300;
   //color:#fff;
-  background-color:#efefef;
+  //background-color:#efefef;
+  background-color:#fff;
   opacity: 0.9;
 }
 
@@ -247,11 +248,16 @@ a.btn {
 
 .navbar {
   //background-color:#400000;
-  background-color:#F6F6F6;
-    box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+ // background-color:#F6F6F6;
+      background-color:#fff;
+
+    
+   // box-shadow: 0 5px 5px rgba(0,0,0,0.2);
 
     //color:#a30319;
     border-radius:0;
+    border-bottom: 1px solid #c4c4c4;
+    
     
 }
 .navbar-nav > li > a {
@@ -375,12 +381,14 @@ a.btn {
 
 footer {
 //  	background-color:rgba(0,0,0,0.5);
+    background-color: #fff;
+    border-top: 1px solid #c4c4c4;
   	color:#888;
   position: absolute;
   bottom: 0;
   width: 100%;
   min-height: 30px;
-  background-color: #f5f5f5;
+ // background-color: #f5f5f5;
 }
 
 
