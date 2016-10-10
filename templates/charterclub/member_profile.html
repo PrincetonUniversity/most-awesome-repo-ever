@@ -5,9 +5,18 @@
 
 {% block content %}
 
-<div class='col-md-10'> 
+<div class='col-md-12'> 
   <h2> Welcome, {{ member.first_name }}! </h2>
-  <div class="col-md-6">
+    <br>
+      <div class="col-md-4">
+    {% if member.image %}
+      <img src="{{member.image.url}}" height="400px">
+        
+    {% else %}
+        <div class="div-image" style="background-image: url({{STATIC_URL}}img/charter-logo-white.png); height:280px;"></div>
+    {% endif %}
+  </div>
+  <div class="col-md-8">
       <hr>
       <h4>House account balance:</h4>
       ${{ member.house_account }}
@@ -28,14 +37,7 @@
       </ul>
   </div>
 
-  <div class="col-md-6">
-    {% if member.image %}
-      <div class="div-image" style="background-image: url({{member.image.url}}); height:400px;"></div>
-        
-    {% else %}
-        <div class="div-image" style="background-image: url({{STATIC_URL}}img/charter-logo-white.png); height:280px;"></div>
-    {% endif %}
-  </div>
+
 </div>
 
 

@@ -5,7 +5,15 @@
   color: #fff;
 }
 
-
+#background-image {
+    display:block;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
 
 .cal-day-holiday span[data-cal-date] {
   color: #fff;
@@ -59,10 +67,14 @@ div.event-image {
 }
 
 .btn-warning, .btn-warning.active, .btn, .btn-primary {
-  color: #fff;
-  background-color: #fff;
-  border-color: #fff;
+  color: #880000;
+  border-color: #880000;
   background: transparent;
+}
+
+.btn-warning:hover, .btn-warning.active:hover, .btn:hover, .btn-primary:hover {
+    background-color: #880000;
+    border-color: #880000;
 }
 
 .btn-right {
@@ -75,6 +87,8 @@ div.event-image {
   border-color: transparent;
   background: #fff;
 }
+
+
 
 .btn-group .btn + .btn,
 .btn-group .btn + .btn-group,

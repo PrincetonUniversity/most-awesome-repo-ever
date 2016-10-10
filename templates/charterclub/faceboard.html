@@ -6,9 +6,11 @@
 {% block content %}
 
 <container>
-    <div class='col-md-10'> 
+    <div class='col-md-12'> 
+
+        <h2> {{ title }} </h2>
         {% if year_options %}
-        <h2> View Faceboards for: </h2>
+        <div style='text-align: center;'>
         <div class="btn-group" role="group" aria-label="...">
 
             <a href="/faceboard" class="btn btn-info" role="button"> Current Membership</a>
@@ -18,8 +20,8 @@
 
             {% endfor %}
         </div>
+        </div>
         {% endif %}
-        <h2> {{ title }} </h2>
         <hr>
         {% for member in display_membership %}
         <div class = 'col-lg-3 col-md-3 col-sm-4 col-xs-6 thumb text-centered'>
@@ -27,7 +29,7 @@
                 {% if member.image %}
                 <div class='faceboard-photo' style="background-image: url({{member.image.url}});"> </div>
                 {% else %}
-                <div class='faceboard-filler' style="background-image: url({{STATIC_URL}}img/charter-logo-white.png);"> </div>
+                <div class='faceboard-filler' style="background-image: url({{STATIC_URL}}img/charter-logo-black.png);"> </div>
                 {% endif %}
             
 
