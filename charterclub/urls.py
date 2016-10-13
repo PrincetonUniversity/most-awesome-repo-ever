@@ -32,6 +32,15 @@ urlpatterns = patterns('',
         include('menus.urls')),
     url(r'^feedback',
         include('feedback.urls')),
+    url(
+        r'^gear',
+        'gear.views.gear',
+        name='gear'),
+    url(
+        r'^cart',
+        'gear.views.cart',
+        name='cart'),
+
 
     url(r'^calendar', 
         include('django_bootstrap_calendar.urls')),

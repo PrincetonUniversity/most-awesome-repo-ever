@@ -57,6 +57,8 @@ ALLOWED_HOSTS = [
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
+CART_PRODUCT_MODEL = 'gear.models.GearItem' 
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -74,6 +76,7 @@ INSTALLED_APPS = (
     'dajax',
     'charterclub',
     'crispy_forms',
+    'carton',
     'events',
     'gear',
     'recruitment',
@@ -98,6 +101,7 @@ MIDDLEWARE_CLASSES = (
     # required for CAS
     'django_cas.middleware.CASMiddleware',
     'django.middleware.doc.XViewMiddleware',
+    'chromelogger.DjangoMiddleware'
 )
 
 TEMPLATE_LOADERS = (

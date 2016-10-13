@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1>TEST GEAR</h1>
+         {% for gear in gear_list %}
+         <container>
+         <p>
+            <form method="post">
+            {% csrf_token %}
+              <p style="margin-left:8px"> 
+              <h2> {{ gear.item.name }}: </h2>
+                {{ gear.item.description }} 
+                <br>
+                ${{ gear.item.price }}
+                <p>
+                <img src="{{gear.item.image_url}}" height="200" weight="200">
+                </p>
+                {% for field in gear.form %}
+                    <p>
+                        {{field.label_tag}}  {{ field }}
+                    </p>
+                {% endfor %}
+                <br>
+                <input type="submit" value="Add To Cart" name="btn_{{gear.item.name}}" />
+                </form>
+                <!-- Add item information and "Add To Cart" button -->
+              </p>
+        </p>
+        </container>
+        {% endfor %}
+        <br>
+    <p>
+    <form action="/admin" method="post">
+{% csrf_token %}
+    <input type="submit" value="Proceed to Checkout" />
+</form>
+</container>
+
+<!-- Add "View Cart" button -->
+
+{% endblock %}
