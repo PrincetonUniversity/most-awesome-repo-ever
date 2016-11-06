@@ -71,6 +71,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
+    'paypal.standard.ipn',
     'jquery',
     'dajaxice',
     'dajax',
@@ -88,6 +89,8 @@ INSTALLED_APPS = (
     'storages', # For AWS
     
 )
+
+PAYPAL_TEST = True
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

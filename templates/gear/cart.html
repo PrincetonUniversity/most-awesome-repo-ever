@@ -8,24 +8,65 @@
 {% load carton_tags %}
 {% get_cart as cart %}
 
-<table>
-        <tr>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Total Price</th>
-        </tr>
-        {% for item in cart.items %}
+<div class="flex-row">
+    <form action="/cart">
+        {% csrf_token %}
+        <input class="btn btn-primary" type="submit" value="Clear Cart" 
+        name="clear" />
+    </form>
+</div>
+
+<table class="table table-hover ">
+  <thead>
+    <tr>
+	    <th>Product</th>
+	    <th>Size</th>
+	    <th>Quantity</th>
+	    <th>Total Price</th>
+        <th>Change Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<tr></tr>
+    {% for item in cart.items %}
         <tr>
             <td>{{ item.product.name }}</td>
+            <td>{{ item.product.sizes }}</td>
             <td>{{ item.quantity }}</td>
             <td>{{ item.subtotal}}</td>
+            <td>
+                <div class="flex-row">
+                <form action="/cart">
+                    {% csrf_token %}
+                    <input class="btn btn-primary" type="submit" value="+"
+                    name="add{{item.product.name}}{{item.product.sizes}}" />
+                </form>
+                <form action="/cart">
+                    {% csrf_token %}
+                    <input class="btn btn-primary" type="submit" value="-"
+                    name="sub{{item.product.name}}{{item.product.sizes}}" />
+                </form>
+                </div>
+            </td>
         </tr>
-        {% endfor %}
+    {% endfor %}
         <tr></tr><tr>
         <td>Total Price:</td>
         <td></td>
+        <td></td>
         <td>{{cart.total}}</td>
+        <td></td>
         </tr>
+  </tbody>
+
 </table>
 
+{{ form.render }}
+
+<div class="flex-row">
+    <form action="/gear">
+        <input class="btn btn-primary" type="submit" value="Continue Shopping" />
+    </form>
+</div>
+       
     {% endblock %}

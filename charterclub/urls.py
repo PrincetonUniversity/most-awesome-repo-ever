@@ -40,6 +40,12 @@ urlpatterns = patterns('',
         r'^cart',
         'gear.views.cart',
         name='cart'),
+    
+    url(r'^paypal/', include('paypal.standard.ipn.urls')),
+
+    url(r'^confirm',
+        'gear.views.confirm',
+        name='confirm'),
 
 
     url(r'^calendar', 

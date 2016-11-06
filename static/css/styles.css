@@ -355,6 +355,28 @@ footer {
   	margin-top:20px;
 }
 
+.flex-group {
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.flex-row {
+  display: flex; /* equal height of the children */
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1em
+}
+
+.flex-col {
+  flex: 1; /* additionally, equal width */
+}
+
+.flex-col-bottom {
+  flex: 1;
+  align-self: flex-end;
+}
+
+
 @media (min-width: 992px) {
   .no-gutter.row > div[class*='col-md'] {
     padding-left: 0;

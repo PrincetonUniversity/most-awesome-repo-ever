@@ -3,40 +3,115 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<h1>TEST GEAR</h1>
-         {% for gear in gear_list %}
-         <container>
-         <p>
-            <form method="post">
+
+<h1>Charter Gear</h1>
+
+    <br>
+    <div class="col-md-12">
+        <form action="/cart" method="post">
             {% csrf_token %}
-              <p style="margin-left:8px"> 
-              <h2> {{ gear.item.name }}: </h2>
-                {{ gear.item.description }} 
-                <br>
-                ${{ gear.item.price }}
-                <p>
-                <img src="{{gear.item.image_url}}" height="200" weight="200">
-                </p>
-                {% for field in gear.form %}
-                    <p>
-                        {{field.label_tag}}  {{ field }}
-                    </p>
-                {% endfor %}
-                <br>
-                <input type="submit" value="Add To Cart" name="btn_{{gear.item.name}}" />
-                </form>
-                <!-- Add item information and "Add To Cart" button -->
-              </p>
-        </p>
-        </container>
-        {% endfor %}
+            <input class="btn btn-primary" type="submit" value="Proceed to Checkout" />
+        </form>
+    </div>
+    <br>
+
+    <br>
+    {% for gear_row in gear_list %}
+        <div class="flex-group">
+            <div class="flex-row">
+                <div class="flex-col col-md-4">
+                    <h2> {{ gear_row.first.item.name }}: </h2>
+                </div>
+                <div class="flex-col col-md-4">
+                    <h2> {{ gear_row.second.item.name }}: </h2>
+                </div>
+                <div class="flex-col col-md-4">
+                    <h2> {{ gear_row.third.item.name }}: </h2>
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-col col-md-4">
+                    {{ gear_row.first.item.description }}
+                </div>
+                <div class="flex-col col-md-4">
+                    {{ gear_row.second.item.description }}
+                </div>
+                <div class="flex-col col-md-4">
+                    {{ gear_row.third.item.description }}
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-col col-md-4">
+                    {{ gear_row.first.item.price }}
+                </div>
+                <div class="flex-col col-md-4">
+                    {{ gear_row.second.item.price }}
+                </div>
+                <div class="flex-col col-md-4">
+                    {{ gear_row.third.item.price}}
+                </div>
+            </div>
+
+            <div class="flex-row">
+                <div class="flex-col col-md-4">
+                    <img align="left" class="img-circle" src="{{gear_row.first.item.image_url}}" height="200" width="200">
+                </div>
+                <div class="flex-col col-md-4">
+                    <img align="left" class="img-circle" src="{{gear_row.second.item.image_url}}" height="200" width="200">
+                </div>
+                <div class="flex-col col-md-4">
+                    <img align="left" class="img-circle" src="{{gear_row.third.item.image_url}}" height="200" width="200">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="flex-row">
+                <div class="flex-col col-md-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in gear_row.first.form %}
+                            <p>
+                                {{field.label_tag}}  {{ field }}
+                            </p>
+                        {% endfor %}
+                        <input class="btn btn-primary" type="submit" value="Add To Cart" name="btn_{{gear_row.first.item.name}}">
+                    </form>
+                </div>
+                <div class="flex-col col-md-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in gear_row.second.form %}
+                            <p>
+                                {{field.label_tag}}  {{ field }}
+                            </p>
+                        {% endfor %}
+                        <input class="btn btn-primary" type="submit" value="Add To Cart" name="btn_{{gear_row.second.item.name}}">
+                    </form>
+                </div>
+                <div class="flex-col col-md-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in gear_row.third.form %}
+                            <p>
+                                {{field.label_tag}}  {{ field }}
+                            </p>
+                        {% endfor %}
+                        <input class="btn btn-primary" type="submit" value="Add To Cart" name="btn_{{gear_row.third.item.name}}">
+                    </form>
+                </div>
+            </div>
+
         <br>
-    <p>
-    <form action="/admin" method="post">
-{% csrf_token %}
-    <input type="submit" value="Proceed to Checkout" />
-</form>
-</container>
+    </div>
+    {% endfor %}
+
+    <div class="col-md-12">
+        <form action="/cart" method="post">
+            {% csrf_token %}
+            <input class="btn btn-primary" type="submit" value="Proceed to Checkout" />
+        </form>
+    </div>
 
 <!-- Add "View Cart" button -->
 

@@ -5,8 +5,8 @@ class GearItem(models.Model):
     description = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     image_url = models.URLField()
-    sizes = models.CharField(blank=True, default='', max_length=100, help_text='use abbreviations and separate with spaces (ex: xs s m l xl)')
-    custom_text = models.IntegerField(blank=True, default=0, help_text='max number of characters (0 if no custom text allowed)')
+    sizes = models.CharField(blank=True, default='', max_length=100, help_text='Create a new item for each size option for this item')
+    inventory = models.IntegerField(default=0, help_text='Number of this item remaining')
 
 
     class Meta:

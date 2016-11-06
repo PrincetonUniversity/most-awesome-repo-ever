@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<h1>Charter Gear</h1>
+
+    <br>
+
+    <form action="/cart" method="post">
+        {% csrf_token %}
+        <input class="btn btn-primary" type="submit" value="Proceed to Checkout" />
+    </form>
+
+    <br>
+
+    <div class="row is-flex">
+        {% for gear in gear_list %}
+            <div class="col-md-4">
+                <div class="row is-flex">
+                    <h2> {{ gear.item.name }}: </h2>
+                </div>
+                {{ gear.item.description }} 
+                <br>
+                ${{ gear.item.price }}
+                <br>
+                <img align="left" class="img-circle" src="{{gear.item.image_url}}" height="200" width="200">
+                <br><br><br><br><br><br><br><br><br><br><br><br>
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in gear.form %}
+                        <p>
+                            {{field.label_tag}}  {{ field }}
+                        </p>
+                    {% endfor %}
+                    <br>
+                    <input class="btn btn-primary" type="submit" value="Add To Cart" name="btn_{{gear.item.name}}">
+                </form>
+                <br><br><br>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-md-12">
+        <form action="/cart" method="post">
+            {% csrf_token %}
+            <input class="btn btn-primary" type="submit" value="Proceed to Checkout" />
+        </form>
+    </div>
+
+<!-- Add "View Cart" button -->
+
+{% endblock %}
