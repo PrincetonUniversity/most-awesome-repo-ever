@@ -3,6 +3,14 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 <h1>Cart</h1>
 
 {% load carton_tags %}

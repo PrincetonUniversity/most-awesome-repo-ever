@@ -26,6 +26,7 @@ from carton.cart import Cart
 import logging
 import chromelogger as console
 from paypal.standard.forms import PayPalPaymentsForm
+from django.contrib import messages
 
 def cart(request):
     cart = Cart(request.session)
@@ -38,7 +39,16 @@ def cart(request):
             if ("add" + item.product.name + item.product.sizes in request.GET):
                 product = GearItem.objects.filter(name=item.product.name,
                     sizes=item.product.sizes)[0]
-                cart.add(product, product.price, 1)
+                if (int(item.quantity) < int(product.inventory)):
+                    print "enough"
+                    cart.add(product, product.price, 1)
+                    message = "1 " + product.name + " (" + product.sizes + ") added to cart"
+                    messages.success(request, message)
+                else:
+                    print "not enough"
+                    message = "The amount of " + product.name + \
+                    " requested is more than the amount we currently have - unable to add to cart"
+                    messages.error(request, message)
                 return HttpResponseRedirect("/cart")
             if ("sub" + item.product.name + item.product.sizes in request.GET):
                 product = GearItem.objects.filter(name=item.product.name,
@@ -47,6 +57,8 @@ def cart(request):
                 cart.remove(product)
                 if (quant > 0):
                     cart.add(product, product.price, quant)
+                message = "1 " + product.name + " (" + product.sizes + ") removed from cart"
+                messages.success(request, message)
                 return HttpResponseRedirect("/cart")
 
 
@@ -115,7 +127,23 @@ def gear(request):
                 else: 
                     product = GearItem.objects.filter(name=gear_list[i].name)[0]
                 print product
-                cart.add(product, product.price, request.POST[('quantity')])
+                quantity = request.POST[('quantity')]
+                print quantity
+                print product.inventory
+                newQuantity = int(quantity)
+                for item in cart.items:
+                    if item.product == product:
+                        newQuantity = newQuantity + int(item.quantity)
+                if (newQuantity <= int(product.inventory)):
+                    print "enough"
+                    cart.add(product, product.price, quantity)
+                    message = quantity + " " + product.name + " (" + product.sizes + ") added to cart"
+                    messages.success(request, message)
+                else:
+                    print "not enough"
+                    message = "The amount of " + product.name + \
+                    " requested is more than the amount we currently have - unable to add to cart"
+                    messages.error(request, message)
                 print "added to cart"
                 print cart.items
                 print cart
