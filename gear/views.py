@@ -23,8 +23,6 @@ from django.shortcuts import get_object_or_404, render_to_response
 from models import *
 from charterclub.permissions import render
 from carton.cart import Cart
-import logging
-import chromelogger as console
 from paypal.standard.forms import PayPalPaymentsForm
 from django.contrib import messages
 
@@ -40,12 +38,10 @@ def cart(request):
                 product = GearItem.objects.filter(name=item.product.name,
                     sizes=item.product.sizes)[0]
                 if (int(item.quantity) < int(product.inventory)):
-                    print "enough"
                     cart.add(product, product.price, 1)
                     message = "1 " + product.name + " (" + product.sizes + ") added to cart"
                     messages.success(request, message)
                 else:
-                    print "not enough"
                     message = "The amount of " + product.name + \
                     " requested is more than the amount we currently have - unable to add to cart"
                     messages.error(request, message)
@@ -60,16 +56,6 @@ def cart(request):
                 message = "1 " + product.name + " (" + product.sizes + ") removed from cart"
                 messages.success(request, message)
                 return HttpResponseRedirect("/cart")
-
-
-
-
-    for item in cart.items:
-        print item.product.name
-        print item.product.sizes
-        print item.quantity
-        print item.subtotal
-
     
     items = ""
     for item in cart.items:
@@ -91,7 +77,6 @@ def cart(request):
         "on0": "test",
         "os0": items}
 
-    print paypal_dict
     # What you want the button to do.
 
     # Create the instance.
@@ -100,54 +85,31 @@ def cart(request):
     return render(request, 'gear/cart.html', context)
 
 def gear(request):
-
-    print "\n"
-    print "test 123 test"
-    print "\n"
-    print request.method
-
     gear_list = GearItem.objects.all()
     gear = []
 
     if (request.method == 'POST'):
-        print "\n"
-        print "hello"
-        print "\n"
-        print request.POST
         for i in range(len(gear_list)):
-            print "btn_" + gear_list[i].name
             if (("btn_" + gear_list[i].name) in request.POST):
-                print "\n"
-                print "found a form"
-                print "\n"
                 cart = Cart(request.session)
                 if (gear_list[i].sizes != ""):
                     product = GearItem.objects.filter(name=gear_list[i].name,
                     sizes=request.POST[('size')])[0]
                 else: 
                     product = GearItem.objects.filter(name=gear_list[i].name)[0]
-                print product
                 quantity = request.POST[('quantity')]
-                print quantity
-                print product.inventory
                 newQuantity = int(quantity)
                 for item in cart.items:
                     if item.product == product:
                         newQuantity = newQuantity + int(item.quantity)
                 if (newQuantity <= int(product.inventory)):
-                    print "enough"
                     cart.add(product, product.price, quantity)
                     message = quantity + " " + product.name + " (" + product.sizes + ") added to cart"
                     messages.success(request, message)
                 else:
-                    print "not enough"
                     message = "The amount of " + product.name + \
                     " requested is more than the amount we currently have - unable to add to cart"
                     messages.error(request, message)
-                print "added to cart"
-                print cart.items
-                print cart
-                print cart.total
                 return HttpResponseRedirect("/gear")
                 break
 
@@ -155,8 +117,6 @@ def gear(request):
     added = []
     for i in range(len(gear_list)):
         if ((gear_list[i].name not in added) and (gear_list[i].inventory > 0)):
-            print added
-
             temp = {}
             temp['item'] = gear_list[i]
             temp['form'] = GearItemForm({}, gear_list[i])
@@ -183,19 +143,6 @@ def gear(request):
 
 from paypal.standard.models import ST_PP_COMPLETED
 from paypal.standard.ipn.signals import valid_ipn_received
-
-def testBuy(request):
-    cart = Cart(request.session)
-    items = cart.items
-    for i in range(len(items) / 3):
-            name = 3 * i
-            quantity = 3 * i + 1
-            size = 3 * i + 2
-            product = GearItem.objects.filter(name=name,
-                    sizes=size)[0]
-            product.inventory = product.inventory - quantity
-            product.save()
-
 from decimal import *
 
 def show_me_the_money(sender, **kwargs):
