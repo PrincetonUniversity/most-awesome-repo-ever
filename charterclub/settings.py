@@ -103,8 +103,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     # required for CAS
     'django_cas.middleware.CASMiddleware',
-    'django.middleware.doc.XViewMiddleware',
-    'chromelogger.DjangoMiddleware'
+    'django.middleware.doc.XViewMiddleware'
 )
 
 TEMPLATE_LOADERS = (
