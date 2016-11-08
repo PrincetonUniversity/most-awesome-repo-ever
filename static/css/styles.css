@@ -11,6 +11,10 @@
   margin-right: 0;
 }
 
+select {
+	background: transparent;
+}
+
 .div-image {
   background-repeat: no-repeat;
   background-position: center;
