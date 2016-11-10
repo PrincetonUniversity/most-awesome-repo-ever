@@ -65,8 +65,7 @@ def cart(request):
     host = request.get_host()
 
     #pass variables to paypal
-    paypal_dict = {"business": "receiver_email@example.com", 
-        "invoice": "unique-invoice-id",
+    paypal_dict = {"business": "charterclubgear@gmail.com", 
         "notify_url": host + "/paypal",
         "return_url": host + "/confirm",
         "cancel_return": host + "/cart",
@@ -152,7 +151,7 @@ def show_me_the_money(sender, **kwargs):
         # Check that the receiver email is the same we previously
         # set on the business field request. (The user could tamper
         # with those fields on payment form before send it to PayPal)
-        if ipn_obj.receiver_email != "receiver_email@example.com":
+        if ipn_obj.receiver_email != "charterclubgear@gmail.com":
             # Not a valid payment
             return
 
