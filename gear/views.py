@@ -150,7 +150,9 @@ from paypal.standard.models import ST_PP_COMPLETED
 from paypal.standard.ipn.signals import valid_ipn_received
 
 def show_me_the_money(sender, **kwargs):
+    print "entering paypal thing"
     ipn_obj = sender
+    print ipn_obj
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         # WARNING !
         # Check that the receiver email is the same we previously
