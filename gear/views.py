@@ -65,7 +65,7 @@ def cart(request):
     host = "http://www.charter-staging-pr-31.herokuapp.com"
 
     #pass variables to paypal
-    paypal_dict = {"business": "charterclubgear@gmail.com", 
+    paypal_dict = {"business": "aw18@princeton.edu", 
         "notify_url": host + "/paypal",
         "return_url": host + "/confirm",
         "cancel_return": host + "/cart",
