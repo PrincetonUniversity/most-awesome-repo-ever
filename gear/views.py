@@ -153,6 +153,9 @@ def show_me_the_money(sender, **kwargs):
     print "entering paypal thing"
     ipn_obj = sender
     print ipn_obj
+    print ipn_obj.payment_status
+    print ipn_obj.custom
+    print ipn_obj.amount
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         # WARNING !
         # Check that the receiver email is the same we previously
