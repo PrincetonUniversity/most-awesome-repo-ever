@@ -25,9 +25,13 @@ from charterclub.permissions import render
 from carton.cart import Cart
 from paypal.standard.forms import PayPalPaymentsForm
 from django.contrib import messages
+from decimal import Decimal
 
 def cart(request):
     cart = Cart(request.session)
+    items = ""
+    for item in cart.items:
+        items = items + item.product.name + "|" + str(item.quantity) + "|" + item.product.sizes + "|"
 
     if (request.method == 'GET'):
         if ("clear" in request.GET):
@@ -76,6 +80,7 @@ def cart(request):
         "custom": items,
         "on0": "test",
         "os0": items}
+
 
     # What you want the button to do.
 
@@ -143,7 +148,6 @@ def gear(request):
 
 from paypal.standard.models import ST_PP_COMPLETED
 from paypal.standard.ipn.signals import valid_ipn_received
-from decimal import *
 
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
@@ -165,25 +169,25 @@ def show_me_the_money(sender, **kwargs):
         price = 0
 
         for i in range(len(items) / 3):
-            name = 3 * i
-            quantity = 3 * i + 1
-            size = 3 * i + 2
+            name = items[3 * i]
+            quantity = Decimal(int(items[3 * i + 1]))
+            size = items[3 * i + 2]
             product = GearItem.objects.filter(name=name,
                     sizes=size)[0]
             price = price + (product.price * quantity)
-        
+
         #check that the money received is correct
-        #if Decimal(price) != ipn_obj.amount:
-        #    return
+        if Decimal(price) != ipn_obj.amount:
+            return
         
         #update inventory
         for i in range(len(items) / 3):
-            name = 3 * i
-            quantity = 3 * i + 1
-            size = 3 * i + 2
+            name = items[3 * i]
+            quantity = items[3 * i + 1]
+            size = items[3 * i + 2]
             product = GearItem.objects.filter(name=name,
                     sizes=size)[0]
-            product.inventory = product.inventory - quantity
+            product.inventory = int(product.inventory) - int(quantity)
             product.save()
 
 
