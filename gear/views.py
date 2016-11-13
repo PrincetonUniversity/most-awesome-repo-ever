@@ -173,8 +173,8 @@ def show_me_the_money(sender, **kwargs):
             price = price + (product.price * quantity)
         
         #check that the money received is correct
-        if Decimal(price) != ipn_obj.amount:
-            return
+        #if Decimal(price) != ipn_obj.amount:
+        #    return
         
         #update inventory
         for i in range(len(items) / 3):
