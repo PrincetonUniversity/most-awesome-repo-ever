@@ -62,7 +62,7 @@ def cart(request):
         items = items + item.product.name + "|" + str(item.quantity) + "|" + item.product.sizes + "|"
 
 
-    host = "http://www.charter-staging-pr-31.herokuapp.com"
+    host = "http://charter-staging-pr-31.herokuapp.com"
 
     #pass variables to paypal
     paypal_dict = {"business": "aw18@princeton.edu", 
