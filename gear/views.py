@@ -195,6 +195,41 @@ def show_me_the_money(sender, **kwargs):
             product.inventory = int(product.inventory) - int(quantity)
             product.save()
 
+    if str(ipn_obj.payment_status) == 'Pending':
+        # WARNING !
+        # Check that the receiver email is the same we previously
+        # set on the business field request. (The user could tamper
+        # with those fields on payment form before send it to PayPal)
+        if ipn_obj.receiver_email != "aw18@princeton.edu":
+            # Not a valid payment
+            return
+
+        # ALSO: for the same reason, you need to check the amount
+        # received etc. are all what you expect.
+
+        # Undertake some action depending upon `ipn_obj`.
+
+        items = ipn_obj.custom.split('|')
+        price = 0
+
+        for i in range(len(items) / 3):
+            name = items[3 * i]
+            quantity = Decimal(int(items[3 * i + 1]))
+            size = items[3 * i + 2]
+            product = GearItem.objects.filter(name=name,
+                    sizes=size)[0]
+            price = price + (product.price * quantity)
+        
+        #update inventory
+        for i in range(len(items) / 3):
+            name = items[3 * i]
+            quantity = items[3 * i + 1]
+            size = items[3 * i + 2]
+            product = GearItem.objects.filter(name=name,
+                    sizes=size)[0]
+            product.inventory = int(product.inventory) - int(quantity)
+            product.save()
+
 
 from django.views.decorators.csrf import csrf_exempt
 
