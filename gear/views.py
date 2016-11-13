@@ -186,6 +186,9 @@ def show_me_the_money(sender, **kwargs):
             product.inventory = product.inventory - quantity
             product.save()
 
+
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
 def confirm(request):
     return render(request, "gear/confirm.html")
 
