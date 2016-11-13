@@ -190,6 +190,8 @@ def show_me_the_money(sender, **kwargs):
 from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def confirm(request):
+	cart = Cart(request.session)
+    cart.clear()
     return render(request, "gear/confirm.html")
 
 
