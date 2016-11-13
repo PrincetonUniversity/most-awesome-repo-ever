@@ -41,7 +41,7 @@ urlpatterns = patterns('',
         'gear.views.cart',
         name='cart'),
     
-    url(r'^paypal/', include('paypal.standard.ipn.urls')),
+    url(r'^paypal', include('paypal.standard.ipn.urls')),
 
     url(r'^confirm',
         'gear.views.confirm',
