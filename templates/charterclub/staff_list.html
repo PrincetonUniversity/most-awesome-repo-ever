@@ -27,7 +27,6 @@
 
             <div class="image-caption">
                 {{ officer.first_name}} {{ officer.last_name}} <br>
-                {{ officer.netid }}@princeton.edu
             </div>
         </div>
         {% endfor %}
@@ -47,13 +46,12 @@
              {% if officer.image %}
                 <div class='faceboard-photo' style="background-image: url({{officer.image.url}});"> </div>
             {% else %}
-                <div class='faceboard-filler' style="background-image: url({{STATIC_URL}}img/charter-logo-white.png);"> </div>
+                <div class='faceboard-filler' style="background-image: url({{STATIC_URL}}img/charter-logo-black.png);"> </div>
             {% endif %}
             </div>
 
             <div class="image-caption">
                 {{ officer.first_name}} {{ officer.last_name}} <br>
-                {{ officer.netid }}@princeton.edu
             </div>
         </div>
         {% endfor %}

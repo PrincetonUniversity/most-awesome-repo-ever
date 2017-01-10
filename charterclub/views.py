@@ -83,7 +83,7 @@ def staff_list(request):
     top6 = query_s[:6]
     staff_rest = query_s[6:]
 
-    return render(request, 'charterclub/officer_list.html', {
+    return render(request, 'charterclub/staff_list.html', {
      'title' : 'Our Staff',
      'top6' : top6,
      'officer_rest' : staff_rest

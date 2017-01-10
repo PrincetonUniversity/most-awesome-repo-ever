@@ -5,11 +5,10 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<container>
-    <h3> Hello {{ prospective.first_name }}. Sign up for meals here! </h3>
-    
-    <hr>
-    <p> You have signed up for the following meals for this month: </p>
+<div class="container">
+    <h1> Sign Up For Meals</h1>
+    <p> Hello {{ prospective.first_name }}, <br>
+    You have signed up for the following meals for this month: </p>
     <ul>
          {% for entry in prospective_this_month_meals %}
           <li> 
@@ -30,7 +29,7 @@
         {% endfor %}
     </ul>
     
-    <hr>
+    <br><br>
     <!-- Information about recruitment starts here -->
     <hr>
     <h3> Information on Sophmore Meals</h3>
@@ -59,11 +58,7 @@
         {% crispy form %}
     </div>
 
-
-     <img src="{{STATIC_URL}}img/food-picture.jpg" style="border: 0" align="middle" width="40%" >
-
-
-</container>
+</div>
 
 
 {% endblock %}
@@ -72,9 +67,9 @@
 {% block js-bottom %} 
 
 
-<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/ui-lightness/jquery-ui.css" rel="stylesheet"/>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.js"></script>
+<link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/ui-lightness/jquery-ui.css" rel="stylesheet"/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.js"></script>
 <script>
 $(function() {
     var dates_allowed = {

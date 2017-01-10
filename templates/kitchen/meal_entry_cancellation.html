@@ -6,9 +6,10 @@
 
 {% block content %}
 
-<container>
+<div class="container">
+    <h1> Meal Cancellation Form </h1>   
+
     <div class='col-sm-offset-2 col-sm-6'>
-    <h3> Meal Cancellation Form </h3>   
     <div>
         <p> {{ meal_entry.meal}} </p>
         <p> {{ meal_entry.meal.description}} </p>
@@ -17,7 +18,7 @@
     {% crispy form %}
     </div>
 
-</container>
+</div>
 
 
 {% endblock %}

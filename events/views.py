@@ -28,7 +28,7 @@ def events_list(request):
     year = Student.get_senior_year()
     begin_date = now - timedelta(weeks=52)
     
-    future_events = Event.objects.filter(date__gte=now).order_by("-date")
+    future_events = Event.objects.filter(date__gte=now).order_by("date")
     past_events = Event.objects.filter(date__gte=begin_date, date__lte=now).order_by("-date")
 
     # # If it is a prospective, then don't show the ones where sophomores are not allowed

@@ -5,9 +5,9 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
-<h3> Looks like you're not on our mailing/members list </h3>
-<hr>
+<div class="container">
+<h2> Looks like you're not on our mailing/members list </h2>
+<br><br>
 
 <p> The netid "{{ netid }}" isn't someone in our database. If you are a: </p>
 <ul>
@@ -23,5 +23,5 @@ For additional questions, please contact our tech chair/webmaster on our <a href
     <div class='col-sm-8 col-md-6'>
         {% crispy form %}
     </div>
-
+</div>
 {% endblock %}

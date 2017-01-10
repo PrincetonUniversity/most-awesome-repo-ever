@@ -1,11 +1,33 @@
+/* Content specific styling */
+
+/*index.html*/
+#background-image {
+    display:block;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+#president-message{
+    z-index:1;
+    background-color: white;
+    background-image: url(../img/pcc.png);
+    width:100vw;
+    min-height:100vh;
+    position:relative;
+    
+    margin-top:100vh;
+}
+
 .cal-day-today {
   background-color: rgba(255, 255, 255, 0.4);
 }
 .cal-day-today span[data-cal-date] {
   color: #fff;
 }
-
-
 
 .cal-day-holiday span[data-cal-date] {
   color: #fff;
@@ -16,6 +38,8 @@
   color:#fff;
   margin: 10px;
 }
+
+/* events */
 
 .rsvp-text {
   color:#aaa;
@@ -33,22 +57,20 @@
   margin-bottom: 20px;
 }
 
+
 .event-listing h1, h2, h3, h4, h5 {
-  margin: 0 0 5px;
+  margin: 0;
 }
 
 .event-listing h3 {
-  margin: 0 0 10px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 .event-listing p {
   margin: 0 0 5px;
 }
 
 div.event-image {
-  height: 150px;
-  margin: 15px;
-  border: 1px solid #fff;
+  height: 250px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -58,32 +80,7 @@ div.event-image {
   color :#C6852A;
 }
 
-.btn-warning, .btn-warning.active, .btn, .btn-primary {
-  color: #fff;
-  background-color: #fff;
-  border-color: #fff;
-  background: transparent;
-}
 
-.btn-right {
-   margin-right: 10px;
-}
-
-.btn-inverse {
-  color: black;
-  background-color: transparent;
-  border-color: transparent;
-  background: #fff;
-}
-
-.btn-group .btn + .btn,
-.btn-group .btn + .btn-group,
-.btn-group .btn-group + .btn,
-.btn-group .btn-group + .btn-group {
-  margin-left: -1px;
-  margin-bottom: 10px;
-
-}
 
 #cal-slide-content {
   background-image: url("../img/skinny.png");
@@ -96,6 +93,8 @@ div.event-image {
   background-color: rgba(255, 255, 255, 0.3);
   text-align: right;
 }
+
+/*faceboard*/
 
 .faceboard-row {
   margin: 0 auto;
@@ -158,6 +157,8 @@ div.event-image {
   }
 }
 
+/* menu */
+
 .menu-pdf-btn {
   font-size:10px;
 }
@@ -192,7 +193,7 @@ div.event-image {
 }
 .menu-text{
   border-style: solid;
-  border-color: #fff;
+  border-color: #000;
   border-width:1px;
   min-height: 180px;
   padding-top: 5px;
@@ -211,5 +212,15 @@ div.event-image {
 section.information-block > p{
   margin:10px;
   margin-bottom: 15px;
-
 }
+
+/* flatpages (and some more)*/
+.header-photo {
+    width:100%;
+    height:300px;
+    overflow:hidden;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+            

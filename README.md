@@ -104,7 +104,7 @@ Congrats! You've cloned the repo. Here's what you want to do if you want to subm
 - Edit your files.
 - Add all files to the staging area. If you don't add files to the staging area, git won't recognize them, and won't share them with everyone else.
 
-        git add .
+        git add *your_changed_files*
 
 - Commit your changes. Bundle all of your changes into one "commit," which is tagged with a commit message and sent to the remote repo.
 
@@ -127,44 +127,3 @@ This will create a new branch on the origin repo
 
 - On the branch page on github, open a new pull request for your branch. Tag people in it so that they can see and comment on it before pushing to master. Once you receive enough approval, close the pull request to merge into master!
 
-
-Pushers
----
-
-Are you a pusher (to Heroku)? If so follow these instructions!
-
-- Add heroku.com as the `heroku` remote to your git:
-
-        heroku git:remote -a charterclub
-        git remote -v
-
-You should see both `origin` and `heroku` as a remote after you type that second line.
-
-- Set up a `release` branch that tracks whatever you have pushed onto Heroku. All pushes will be done from this branch, as it includes the commit that deletes `local_settings.py` and removes the `@login_required` decorators.
-
-        git checkout -b release heroku/master
-
-You've now set up your release branch!
-
-When there are changes on `master` that you want to release to the public, do the following:
-
-- Update your `master` branch with the most recent changes. Whatever is on your local copy of `master` is what will be pushed.
-
-        git checkout master
-        git pull -r
-
-- Pull changes from `heroku/master` so that you have the changes from the last person who pushed:
-
-        git checkout release
-        git pull -r
-
-- Merge in the new changes from your local copy of `master`.
-
-        git merge master
-        git log
-
-You should see all of the new commits plus a "merge" commit in your `release` branch.
-
-- Push to heroku!
-
-        git push heroku master

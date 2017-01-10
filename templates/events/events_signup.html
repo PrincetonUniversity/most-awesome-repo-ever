@@ -4,7 +4,8 @@
 
 {% block content %}
 {% load my_filters %}
-    <h3> RSVP for {{ event.title }} </h3>
+    <div class="container">
+    <h1> RSVP for {{ event.title }} </h1>
     <p> Time: {{ event.time|time:"g:iA"}} 
      {% if event.guest_limit > 0 and member %}
         | Guest limit: {{rsvp_guests|length}}/{{ event.guest_limit}}
@@ -77,5 +78,5 @@
     </div>
     </container>
 
-    
+    </div>
 {% endblock %}

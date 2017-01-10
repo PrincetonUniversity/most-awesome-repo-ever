@@ -1,5 +1,4 @@
 from django.shortcuts import redirect
-
 from charterclub.permissions import render
 import charterclub.permissions as permissions
 

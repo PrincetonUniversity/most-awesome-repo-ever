@@ -7,8 +7,7 @@
 
    <h2> Weekly Menu </h2>
 
-   <hr>
-
+<br>
       {% for menuitem in menu_list %}
          <h3> {{ menuitem.date|date:"l, M j " }} </h3>
          <div class="col-xs-12" style="margin-bottom: 30px">
@@ -25,6 +24,7 @@
                {{ menuitem.dinner_food|linebreaks }} 
             </div>
          </div>
+<br>
       {% endfor %}
 
 {% endblock %}

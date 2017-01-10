@@ -4,17 +4,26 @@
 {% load staticfiles %}
 
 {% block content %}
-
-<div class='col-md-10'> 
-  <h2> Welcome, {{ member.first_name }}! </h2>
-  <div class="col-md-6">
-      <hr>
-      <h4>House account balance:</h4>
+<div class="container">
+<div class='col-md-12'> 
+  <h1> Welcome, {{ member.first_name }}! </h1>
+    <br>
+      <div class="col-md-4">
+    {% if member.image %}
+      <img src="{{member.image.url}}" height="400px">
+        
+    {% else %}
+        <div class="div-image" style="background-image: url({{STATIC_URL}}img/charter-logo-white.png); height:280px;"></div>
+    {% endif %}
+  </div>
+  <div class="col-md-8">
+      <br>
+      <h3>House account balance:</h3>
       ${{ member.house_account }}
-      <h4> Number of Guest Meals: </h4>
+      <h3> Number of Guest Meals: </h3>
       {{ member.guest_meals}} meals left for this semester
-      <hr>
-      <h4>Upcoming RSVP's:</h4>
+      <br><br>
+      <h3>Upcoming RSVP's:</h3>
       <ul>
       
       {% for entry in member.get_future_related_entries.all %}
@@ -26,16 +35,12 @@
 
       {% endfor %} 
       </ul>
+      <br>
+      <br>
+      <a href="{% url 'feedback' %}" class="btn btn-info" role="button">Anonymous Feedback</a>
   </div>
 
-  <div class="col-md-6">
-    {% if member.image %}
-      <div class="div-image" style="background-image: url({{member.image.url}}); height:400px;"></div>
-        
-    {% else %}
-        <div class="div-image" style="background-image: url({{STATIC_URL}}img/charter-logo-white.png); height:280px;"></div>
-    {% endif %}
-  </div>
+    </div>
 </div>
 
 

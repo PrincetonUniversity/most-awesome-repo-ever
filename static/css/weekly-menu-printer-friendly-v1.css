@@ -12,7 +12,9 @@
     
     /* default print margins */
 
-
+    .header-buffer{
+        display: none !important;
+    }
 .btn {
     display: none;
 }
@@ -24,6 +26,10 @@
 .meal-descript {
     display: none;
 }
+    
+    h1 {
+        display: none;
+    }
 h2 {
     font-size: 3.0em;
     display: none;
@@ -48,6 +54,7 @@ h3 {
         min-height: inherit !important;
         height: inherit !important;
         overflow: hidden !important;
+        border: 0px !important;
     }
     
     p {
@@ -168,7 +175,7 @@ strong {
         font-size: 0.13in;
     }
     
-    .footer .credits{
+    .footer, .credits, .text-muted{
         display: none;
     }
 }

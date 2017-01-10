@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = os.environ.get('CHARTER_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
  
 
 # if this is true, get_username(request) will return testuser. use for
@@ -222,5 +222,5 @@ STATICFILES_FINDERS = ('django.contrib.staticfiles.finders.FileSystemFinder',
                        'dajaxice.finders.DajaxiceFinder')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
-
+PAYPAL_TEST = False
 

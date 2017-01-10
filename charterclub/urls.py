@@ -63,7 +63,7 @@ urlpatterns = patterns('',
         'charterclub.views.catering',
         name='catering'),
     url(
-        r'^faceboard/([0-9]+)/$',
+        r'^faceboard/([0-9]+)$',
         'charterclub.views.faceboard_year',
         name='faceboard_year'),
     url(

@@ -3,12 +3,12 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
-<h3> Thank you {{ prospective.first_name}} for creating an account! </h3>
-<hr>
+<div class="container">
+<h1> Thank you {{ prospective.first_name}} for creating an account! </h1>
+<br><br>
 <p> As a prospective, you get access to parts of the website that other people don't (meal signups and event signups etc). </p>
 
 <p> You can view your profile <a href="{% url 'profile' %}" class="btn btn-info" role="button"> here</a></p>
-
+</div>
 {% endblock %}
 

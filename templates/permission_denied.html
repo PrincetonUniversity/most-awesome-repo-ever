@@ -4,12 +4,12 @@
 {% load staticfiles %}
 
 {% block content %}
-
-<h3> Permission Denied </h3>
-<hr>
+<div class="container">
+<h1> Permission Denied </h1>
+<br><br>
 <p> You do not have permission to access this content. You need to be a {{ required_permission }}.</p>
 
 
 <p> Please log in <a href="{%url 'login' %}">  <font color="C6852A">here</font> </a>.</p>
-
+</div>
 {% endblock %}

@@ -6,17 +6,18 @@
 
 {% block css %}
     {{ block.super }}
-    <link rel="stylesheet" media="print" href="{% static "css/weekly-menu-printer-friendly.css" %}" />
+    <link rel="stylesheet" media="print" href="{% static "css/weekly-menu-printer-friendly-v1.css" %}" />
 {% endblock %}
 
 {% block content %}
 
-<container>
-    <h2> Weekly Menu </h2>
+<div class="container">
+
+    <h1> Weekly Menu </h1>
     <div class='row'>
         <a href="{% url 'weekly_menu' %}/{{ prev_week.isoformat}}" class="btn btn-info" role="button"> Prev Week </a> <a href="{% url 'weekly_menu' %}/{{ next_week.isoformat}}" class="btn btn-info" role="button"> Next Week </a>
     <div class='row'>
-    <hr>
+
     
 
     <div class="col-xs-12 col-sm-11">
@@ -123,6 +124,9 @@
         {% endfor %}
     </div>
         
+    </div>
+    </div>
+        
     <script>
         var lunches = document.getElementsByClassName('lunch-content');
         for (var i = 0; i < lunches.length; i++) {
@@ -221,5 +225,10 @@
 
         
     </script>
+
+    
 </container>
+
+</div>    
+<br>
 {% endblock %}

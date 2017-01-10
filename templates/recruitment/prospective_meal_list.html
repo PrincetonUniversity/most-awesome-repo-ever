@@ -24,8 +24,8 @@
 
 
 {% block content %}
-
-<h2> Prospective Meal List</h2>
+<div class="container">
+<h1> Prospective Meal List</h1>
 <p> {{ time.date|date:"l, F j"}} </p>
 <a href="{% url 'prospective_meal_list' %}/{{ prev_day.isoformat}}" class="btn btn-info print-hide" role="button"> Prev Day </a>
 <a href="{% url 'prospective_meal_list' %}/{{ next_day.isoformat}}" class="btn btn-info print-hide" role="button"> Next Day </a>
@@ -63,7 +63,7 @@
     </div>
 {% endfor %}
 
-<div
+</div>
 
 {% endblock %}
 

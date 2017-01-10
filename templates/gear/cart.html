@@ -3,78 +3,82 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+<div class='container'>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-info">
+         {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
 
-<h1>Cart</h1>
+    <h1>Cart</h1>
 
-{% load carton_tags %}
-{% get_cart as cart %}
+    {% load carton_tags %}
+    {% get_cart as cart %}
 
-<div class="flex-row">
-    <form action="/cart">
-        {% csrf_token %}
-        <input class="btn btn-primary" type="submit" value="Clear Cart" 
-        name="clear" />
-    </form>
-</div>
+    <div class="flex-row">
+        <form action="/cart">
+            {% csrf_token %}
+            <input class="btn btn-primary" type="submit" value="Clear Cart" 
+            name="clear" />
+        </form>
+    </div>
 
-<table class="table table-hover ">
-  <thead>
-    <tr>
-	    <th>Product</th>
-	    <th>Size</th>
-	    <th>Quantity</th>
-	    <th>Total Price</th>
-        <th>Change Quantity</th>
-    </tr>
-  </thead>
-  <tbody>
-  	<tr></tr>
-    {% for item in cart.items %}
+    <table class="table table-hover ">
+      <thead>
         <tr>
-            <td>{{ item.product.name }}</td>
-            <td>{{ item.product.sizes }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>{{ item.subtotal}}</td>
-            <td>
-                <div class="flex-row">
-                <form action="/cart">
-                    {% csrf_token %}
-                    <input class="btn btn-primary" type="submit" value="+"
-                    name="add{{item.product.name}}{{item.product.sizes}}" />
-                </form>
-                <form action="/cart">
-                    {% csrf_token %}
-                    <input class="btn btn-primary" type="submit" value="-"
-                    name="sub{{item.product.name}}{{item.product.sizes}}" />
-                </form>
-                </div>
-            </td>
+    	    <th>Product</th>
+    	    <th>Size</th>
+    	    <th>Quantity</th>
+    	    <th>Total Price</th>
+            <th>Change Quantity</th>
         </tr>
-    {% endfor %}
-        <tr></tr><tr>
-        <td>Total Price:</td>
-        <td></td>
-        <td></td>
-        <td>{{cart.total}}</td>
-        <td></td>
-        </tr>
-  </tbody>
+      </thead>
+      <tbody>
+      	<tr></tr>
+        {% for item in cart.items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.product.sizes }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.subtotal}}</td>
+                <td>
+                    <div class="flex-row">
+                    <form action="/cart">
+                        {% csrf_token %}
+                        <input class="btn btn-primary" type="submit" value="+"
+                        name="add{{item.product.name}}{{item.product.sizes}}" />
+                    </form>
+                    <form action="/cart">
+                        {% csrf_token %}
+                        <input class="btn btn-primary" type="submit" value="-"
+                        name="sub{{item.product.name}}{{item.product.sizes}}" />
+                    </form>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+            <tr></tr><tr>
+            <td>Total Price:</td>
+            <td></td>
+            <td></td>
+            <td>{{cart.total}}*</td>
+            <td></td>
+            </tr>
+      </tbody>
 
-</table>
+    </table>
+    *plus shipping (you will recieve an additional invoice prior to your order being sent)
+    <br>
+    <br>
+    {{ form.render }}
 
-{{ form.render }}
-
-<div class="flex-row">
-    <form action="/gear">
-        <input class="btn btn-primary" type="submit" value="Continue Shopping" />
-    </form>
+    <div class="flex-row">
+        <form action="/gear">
+            <input class="btn btn-primary" type="submit" value="Continue Shopping" />
+        </form>
+    </div>
 </div>
        
     {% endblock %}
