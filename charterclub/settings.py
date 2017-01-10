@@ -90,6 +90,8 @@ INSTALLED_APPS = (
     
 )
 
+PAYPAL_TEST = True
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
