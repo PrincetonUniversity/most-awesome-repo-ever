@@ -9,27 +9,26 @@
     <hr>
 
     <h5> What is a Prospectives Account? </h5>
-    <p> 
+    <p>
         A Prospectives Account allows you to keep track of the point system. What you can do with your account:
-         <ul> 
+         <ul>
             <li> Sign up for sophomore meals. </li>
             <li> Sign up for our club wide events. </li>
-            <li> Keep track of how many points you have </li>
          </ul>
 
        When you become a member, your account will be upgraded to a full member account. Your account will also allow you to view parts of the websitess that are for prospectives only!
     </p>
-    
+
     <h5> Who should make one? </h5>
     <p> The prospectives account should only be made for sophomores. Freshmen cannot join eating clubs until their sophomore year. Upperclassmen can join directly (email one of our officers). </p>
-    
+
     <h5> How do I make one? </h5>
     <p> <a href="{% url 'login' %}"> Login </a> with your Princeton netid first, and we'll use Princeton CAS system to create an account for you our database. </p>
 </section>
-<hr> 
+<hr>
 
 {% if not student %}
-    <a href="{% url 'login' %}" class="btn btn-info" role="button"> Log into Princeton CAS </a> 
+    <a href="{% url 'login' %}" class="btn btn-info" role="button"> Log into Princeton CAS </a>
 {% else %}
     <p> Looks like you have an account already! </p>
 {% endif %}
